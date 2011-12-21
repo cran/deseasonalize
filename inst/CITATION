@@ -1,0 +1,14 @@
+citHeader("To cite ascrda in publications use:")
+
+citEntry(entry = "Article",
+  title        = "Optimal Deseasonalization for Daily and Monthly Geophysical Time Series",
+  author       = personList(as.person("A. I. McLeod")),
+  journal      = "Submitted for publication",
+  year         = "2011",
+
+  textVersion  =
+  paste("A. I. McLeod (2011).",
+        "Optimal Deseasonalization for Daily and Monthly Geophysical Time Series",
+        "Submitted")
+)
+

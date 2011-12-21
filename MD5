@@ -1,0 +1,15 @@
+81eb43a903e74744154d3a1ffd9f3733 *DESCRIPTION
+2a042e301963e9584e8eebdd721e916b *NAMESPACE
+c6b56b58fee0179b185a81143cebd163 *R/ds.R
+06ec628df4b8352b0cb4803fa0c47f5f *data/LondonMaxTemp.rda
+981b994d1af7f5cb83efa72c56dbedb1 *data/ManleyTemp.rda
+87d7ce0846b0a0e4f691292e62e49678 *data/Saugeen.rda
+1ff232171f20e444f5de3367a43257a1 *inst/CITATION
+455c204de5850c9e295b4ba045b22545 *inst/doc/EgLondonMaxTemp.R
+a2f813edf537f01a33a3b262a3744727 *inst/doc/EgManleyTemp.R
+9d5013d10e1d45ba831f00df2a058414 *inst/doc/EgSaugeen.R
+5ab1e2bcba38b78b784d9058adcde03f *man/LondonMaxTemp.Rd
+89ede5dc036fed02dadaec0307bde0f2 *man/ManleyTemp.Rd
+fcc7de6fd704c11b5f0c31212ac491ef *man/Saugeen.Rd
+d1ff52d7139a040e830b5be9259312a7 *man/deseasonalize-package.Rd
+8b31366ece21c5a1d35cbdfea0a33f37 *man/ds.Rd
