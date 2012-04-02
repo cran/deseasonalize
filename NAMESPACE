@@ -1,5 +1,12 @@
-export("ds")
+export(
+"ds",
+"getds"
+)
+
 import("FitAR", "lattice")
+
+#methods
+	S3method("print",	"deseasonalize")
 
 
 

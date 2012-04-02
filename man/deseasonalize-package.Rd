@@ -8,14 +8,18 @@ Optimal deseasonalization for geophysical time series using AR fitting
 
 \description{
 Deseasonalize daily or monthly time series.
+An harmonic regression is fit to the data to estimate the
+seasonal means and standard deviations.
+The number of terms in the harmonic regression may be
+determined using the BIC or generalized AIC.
 }
 
 \details{
 \tabular{ll}{
 Package: \tab deseasonalize\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2011-12-21\cr
+Version: \tab 1.03\cr
+Date: \tab 2012-04-02\cr
 License: \tab GPL (>= 2.10)\cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr
@@ -25,7 +29,6 @@ The only function is \code{\link{ds}}.
 
 For how to use the funciton \code{\link{ds}}, see the examples provided with the datasets
 \code{\link{Saugeen}},
-\code{\link{ManleyTemp}},
  and
 \code{\link{LondonMaxTemp}}.
 

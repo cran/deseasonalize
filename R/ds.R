@@ -1,45 +1,44 @@
 ds <-
-function(z, Fm=1, Fs=0, ic=c("BIC","AIC"), type=c("daily", "monthly")){
-    type <- match.arg(type)
-    ic <- match.arg(ic)
+function(z, Fm=6, Fs=6, type=c("daily", "monthly"), searchQ=TRUE, lag.max=20, ic=c("BIC","AIC"),
+	standardizeQ=TRUE){
+    if (is.ts(z)&&frequency(z)==12) type <- "monthly" else type <- match.arg(type)
     if (type=="daily") s<-365.25 else s<-12
+    if (! (s%in%c(12,365.25))) stop("Error: s must be 12 or 365.25")
+    if (min(Fm,Fs) < 0) stop("Error: both Fm and Fs must be >= 0")
+    if (max(Fm,Fs) > 6) stop("Error: Fm and Fs are restricted to be <= 6")
+    if (max(Fm,Fs) > s/2) stop("error: Fm or Fs setting too large")
+
+    ic <- match.arg(ic)
     nz <- length(z)
     if (nz < s) stop("error: need at least one year (366 days or 12 months)")
-    if (Fm <= 0) stop("error: need Fm > 0")
-    if (max(Fm,Fs) > s/2) stop("error: Fm or Fs setting too large")
-    xt <- 1:nz
-    X <- matrix(rep(1,(2*Fm+1)*nz), ncol=2*Fm+1)
-    jj <- 2
-    for (j in 1:Fm){
-        x <- j*(2*pi/s)*xt
-        X[,jj] <- sin(x)
-        X[,jj+1] <- cos(x)
-        jj <- jj+2
-        }
-    zds <- zdm <- resid(lm.fit(x=X, y=z))
-    estsd <- rep(sd(zds), nz)
-    J2 <- 0
-    if (Fs > 0) {
-        zsq <- zdm^2
-        X <- matrix(rep(1,(2*Fs+1)*nz), ncol=2*Fs+1)
-        jj <- 2
-        for (j in 1:Fs){
-            x <- j*(2*pi/s)*xt
-            X[,jj] <- sin(x)
-            X[,jj+1] <- cos(x)
-            jj <- jj+2
-            }
-        estsd <- sqrt(fitted(lm.fit(x=X, y=zsq)))
-    }
-    J2 <- -sum(log(estsd))
-    zds <- zdm/estsd
-    ans <- SelectModel(zds, lag.max = 20, Criterion = ic, Best=2)
-    pHat <- ans[1,1]
-    if (ic == "BIC") parPenalty <- log(nz)*2*(Fm+Fs) else
-        parPenalty <- 4*(Fm+Fs)
-    BestBIC <- ans[1,2] - J2 + parPenalty
-    out<-c(Fm, Fs, pHat, BestBIC)
-    if (ic == "BIC") names(out) <- c("Fm", "Fs", "p", "BIC") else
-        names(out) <- c("Fm", "Fs", "p", "AIC")
-    list(out=out, z=zds)
+#
+if (!searchQ) { #only one specific model
+  ans <- getds(z=z, s=s, Fm=Fm, Fs=Fs, ic=ic, lag.max=lag.max)
+  ansNull <- getds(z=z, s=s, Fm=0, Fs=0, ic=ic, lag.max=lag.max)
+  m <- matrix(ans$dspar, nrow=1, ncol=5)
+  dimnames(m)[[2]] <- c("Fm", "Fs", "p", "AIC", "Rsq")
+  zds <- ans$z
+  } else {
+#enumerate all models, find best
+      maxFm <- Fm
+      maxFs <- Fs
+      m <- matrix(numeric(4*((maxFm+1)*(maxFs+1))), ncol=4)
+      colnames(m) <- c("Fm", "Fs", "p", ic)
+      i <- 0
+      for (iFm in 0:maxFm)
+        for (iFs in 0:maxFs) {
+          i <- i+1
+          m[i,] <- getds(z=z, s=s, Fm=iFm, Fs=iFs, ic=ic, lag.max=lag.max, standardizeQ=standardizeQ)$dspar
+          }
+      }
+      rownames(m) <- rep(" ", nrow(m))
+      ind<-which.min(m[,4])
+      rownames(m)[ind]<-"*" #best one
+      FmOpt <- m[ind,1]
+      FsOpt <- m[ind,2]
+      zds <- getds(z=z, s=s, Fm=FmOpt, Fs=FsOpt, ic=ic, lag.max=lag.max, standardizeQ=standardizeQ)$z
+mnames <- colnames(m)
+out <- list(dspar=m, z=zds)
+class(out) <- "deseasonalize"
+out
 }
