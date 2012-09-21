@@ -24,8 +24,8 @@ getds <- function(z, s, Fm=6, Fs=6, ic=c("BIC","AIC"), lag.max=20, standardizeQ=
   estsd <- rep(sd(zdm), nz)
   J2 <- 0
   #
-  if (standardizeQ) fitsds <- rep(1, nz) else {
-    if (Fs == 0) fitds <- rep(var(z), nz) else if (Fs > 0) {
+  if (!standardizeQ) fitsds <- rep(1, nz) else {
+    if (Fs == 0) fitsds <- rep(var(z), nz) else if (Fs > 0) {
 	    zsq <- zdm^2
     	X <- matrix(rep(1,(2*Fs+1)*nz), ncol=2*Fs+1)
     	jj <- 2

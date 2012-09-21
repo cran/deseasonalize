@@ -22,7 +22,6 @@ was with Fm=5 and Fs=4.}
 K. W. Hipel and A. I. McLeod (1994). 
 Time Series Modelling of Water Resources and Environmental Systems.
 Elsevier.
-\url{http://www.stats.uwo.ca/faculty/aim/1994Book/default.htm}
 }
 
 \examples{

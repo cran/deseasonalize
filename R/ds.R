@@ -1,6 +1,8 @@
 ds <-
 function(z, Fm=6, Fs=6, type=c("daily", "monthly"), searchQ=TRUE, lag.max=20, ic=c("BIC","AIC"),
 	standardizeQ=TRUE){
+    if (is.matrix(z)&&ncol(z)>1) stop("Error z: must be univariate time series, vector or matrix with one column")
+    if (is.matrix(z)) z <- as.vector(z)
     if (is.ts(z)&&frequency(z)==12) type <- "monthly" else type <- match.arg(type)
     if (type=="daily") s<-365.25 else s<-12
     if (! (s%in%c(12,365.25))) stop("Error: s must be 12 or 365.25")
@@ -13,10 +15,8 @@ function(z, Fm=6, Fs=6, type=c("daily", "monthly"), searchQ=TRUE, lag.max=20, ic
     if (nz < s) stop("error: need at least one year (366 days or 12 months)")
 #
 if (!searchQ) { #only one specific model
-  ans <- getds(z=z, s=s, Fm=Fm, Fs=Fs, ic=ic, lag.max=lag.max)
-  ansNull <- getds(z=z, s=s, Fm=0, Fs=0, ic=ic, lag.max=lag.max)
-  m <- matrix(ans$dspar, nrow=1, ncol=5)
-  dimnames(m)[[2]] <- c("Fm", "Fs", "p", "AIC", "Rsq")
+  ans <- getds(z=z, s=s, Fm=Fm, Fs=Fs, ic=ic, lag.max=lag.max, standardizeQ=standardizeQ)
+  m <- matrix(ans$dspar, nrow=1, ncol=4)
   zds <- ans$z
   } else {
 #enumerate all models, find best

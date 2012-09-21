@@ -18,8 +18,8 @@ determined using the BIC or generalized AIC.
 \tabular{ll}{
 Package: \tab deseasonalize\cr
 Type: \tab Package\cr
-Version: \tab 1.03\cr
-Date: \tab 2012-04-02\cr
+Version: \tab 1.3.2\cr
+Date: \tab 2012-09-21\cr
 License: \tab GPL (>= 2.10)\cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr
@@ -27,15 +27,18 @@ LazyData: \tab yes\cr
 
 The only function is \code{\link{ds}}. 
 
-For how to use the funciton \code{\link{ds}}, see the examples provided with the datasets
+For how to use the function \code{\link{ds}}, see the examples provided with the datasets
 \code{\link{Saugeen}},
  and
-\code{\link{LondonMaxTemp}}.
+\code{\link{SaugeenDay}}.
+
+A dynamic time series plot for the Saugeen daily riverflow is available
+in the subdirectory /inst/doc.
 
 }
 
 \author{
-A. I. McLeod
+A. I. McLeod and Hyukjun Gweon
  <aimcleod@uwo.ca>
 }
 
@@ -44,12 +47,12 @@ A. I. McLeod
 K. W. Hipel and A. I. McLeod (1994). 
 Time Series Modelling of Water Resources and Environmental Systems.
 Elsevier.
-\url{http://www.stats.uwo.ca/faculty/aim/1994Book/default.htm}
-
 
 McLeod, A.I. and Zhang, Y. (2008b).
 Improved Subset Autoregression: With R Package.
 Journal of Statistical Software.
+
+
 }
 
 
