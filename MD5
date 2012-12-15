@@ -1,4 +1,4 @@
-3259e1f748046bc2b7e360e957471465 *DESCRIPTION
+a0887fcc608840108024289492ba6d55 *DESCRIPTION
 5e898ab90bd828da359b1518abc73379 *NAMESPACE
 3c9ca86782615d3c404f9f1e6189bdbb *R/ds.R
 59d96c0c626daf5451c9d7a77b1b8324 *R/getds.R
@@ -11,7 +11,7 @@ e054d67a767f699962b2845a711044a6 *inst/doc/DynamicVisualizationDailySaugeen.cdf
 d530c736eb9b273492064583b2fe3d90 *inst/doc/DynamicVisualizationDailySaugeen.nb
 f223be5e8de2e2ff2e23bc963c1f0b14 *man/Saugeen.Rd
 0ef6f86bddd5c3f8a42b6fe2c5a08164 *man/SaugeenDay.Rd
-a47db10796c20e8817d9c8d55f50ef51 *man/deseasonalize-package.Rd
+5d65c65e58176be53c6a674878e2ff07 *man/deseasonalize-package.Rd
 b3a35abe01324f8cbda0c778e55e88f5 *man/ds.Rd
 2f66e54639c8e5502f14284c38d55402 *man/getds.Rd
 b0170de468c0adfee7af905c10346f37 *man/print.deseasonalize.Rd
