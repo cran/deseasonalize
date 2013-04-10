@@ -18,8 +18,8 @@ determined using the BIC or generalized AIC.
 \tabular{ll}{
 Package: \tab deseasonalize\cr
 Type: \tab Package\cr
-Version: \tab 1.33\cr
-Date: \tab 2012-12-15\cr
+Version: \tab 1.35\cr
+Date: \tab 2013-04-10\cr
 License: \tab GPL (>= 2.10)\cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr

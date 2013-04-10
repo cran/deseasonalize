@@ -54,18 +54,25 @@ A. I. McLeod (aimcleod@uwo.ca)
 }
 
 \examples{
-#Simple example.
-out <- ds(nottem)
+#Example 1. Simple example.
+out <- ds(nottem, Fm=2, Fs=2, type="monthly")
+summary(out)
+#
+#Example 2. longer example
+\dontrun{
+out <- ds(nottem, type="monthly")
 #from the table below we see that 2 Fourier components are used for the seasonal means
 # and 0 components for the seasonal standard deviations.
 out$dispar
 #check that the series is deasonalized using the cumulative periodogram test
 cpgram(out$z)
+}
 #
+#Example 3
 #As a check, compute deaseasonalized time series using full transformation.
 #Then monthly means should be close to 0 and monthly sd close to 1.0.
 #But not exact due to harmonic regression errors.
-z <- ds(nottem, Fm=6, Fs=6, type="monthly")$z
+z <- ds(nottem, Fm=6, Fs=6, type="monthly", searchQ=FALSE)$z
 apply(matrix(z, ncol=12, byrow=TRUE), MARGIN=2, mean )
 apply(matrix(z, ncol=12, byrow=TRUE), MARGIN=2, sd )
 }
